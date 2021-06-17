@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: 2acf82b16a0d72d4fa7bba41f84a14f3
+guid: c5c5bbe53e4398f43ae3ba2a77473560
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -249970882508100776
-    second: chactor_DEAD_0
+      213: 1008349250708897782
+    second: chactor_DEAD (1)_0
   - first:
-      213: 4947711846742277553
-    second: chactor_DEAD_1
+      213: -3442031096752240916
+    second: chactor_DEAD (1)_1
   - first:
-      213: -475984741550090867
-    second: chactor_DEAD_2
+      213: -8180481468765449644
+    second: chactor_DEAD (1)_2
   - first:
-      213: -8813636991162698164
-    second: chactor_DEAD_3
+      213: -2455407703693385845
+    second: chactor_DEAD (1)_3
   - first:
-      213: 8468127256436387097
-    second: chactor_DEAD_4
+      213: -7531867352263638298
+    second: chactor_DEAD (1)_4
   - first:
-      213: -3067809929862920357
-    second: chactor_DEAD_5
+      213: 838479829181839762
+    second: chactor_DEAD (1)_5
   - first:
-      213: -6079791694954185581
-    second: chactor_DEAD_6
+      213: -6151477365410522230
+    second: chactor_DEAD (1)_6
   - first:
-      213: 809911125213960424
-    second: chactor_DEAD_7
+      213: -418206981769670132
+    second: chactor_DEAD (1)_7
   - first:
-      213: 464050742392643906
-    second: chactor_DEAD_8
+      213: 1422416625245567109
+    second: chactor_DEAD (1)_8
   - first:
-      213: -6492165952733654210
-    second: chactor_DEAD_9
+      213: -4398648216305981500
+    second: chactor_DEAD (1)_9
   - first:
-      213: 6946577297271987007
-    second: chactor_DEAD_10
+      213: 8434331914295570072
+    second: chactor_DEAD (1)_10
   - first:
-      213: -598578608274417294
-    second: chactor_DEAD_11
+      213: 2098777603423856197
+    second: chactor_DEAD (1)_11
   - first:
-      213: -3073672149169555457
-    second: chactor_DEAD_12
+      213: 4523786948808832161
+    second: chactor_DEAD (1)_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -138,7 +138,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chactor_DEAD_0
+      name: chactor_DEAD (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85be9e78ecce78cf0800000000000000
-      internalID: -249970882508100776
+      spriteID: 6fff8021d406efd00800000000000000
+      internalID: 1008349250708897782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_1
+      name: chactor_DEAD (1)_1
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bdb014e5bdc9a440800000000000000
-      internalID: 4947711846742277553
+      spriteID: ce60c3444f27b30d0800000000000000
+      internalID: -3442031096752240916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_2
+      name: chactor_DEAD (1)_2
       rect:
         serializedVersion: 2
         x: 128
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8596614666f469f0800000000000000
-      internalID: -475984741550090867
+      spriteID: 452d19a3277197e80800000000000000
+      internalID: -8180481468765449644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_3
+      name: chactor_DEAD (1)_3
       rect:
         serializedVersion: 2
         x: 192
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c46318a6adbafa580800000000000000
-      internalID: -8813636991162698164
+      spriteID: b8f199ae3b3acedd0800000000000000
+      internalID: -2455407703693385845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_4
+      name: chactor_DEAD (1)_4
       rect:
         serializedVersion: 2
         x: 256
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91da1b8afd4d48570800000000000000
-      internalID: 8468127256436387097
+      spriteID: 6e2c6f47c8e697790800000000000000
+      internalID: -7531867352263638298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_5
+      name: chactor_DEAD (1)_5
       rect:
         serializedVersion: 2
         x: 320
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b57ca1c6f13fc65d0800000000000000
-      internalID: -3067809929862920357
+      spriteID: 299b6b156f0e2ab00800000000000000
+      internalID: 838479829181839762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_6
+      name: chactor_DEAD (1)_6
       rect:
         serializedVersion: 2
         x: 384
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39cb2e16aad30aba0800000000000000
-      internalID: -6079791694954185581
+      spriteID: a8b99d69def81aaa0800000000000000
+      internalID: -6151477365410522230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_7
+      name: chactor_DEAD (1)_7
       rect:
         serializedVersion: 2
         x: 448
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e8d30690e16d3b00800000000000000
-      internalID: 809911125213960424
+      spriteID: c02d70147fa323af0800000000000000
+      internalID: -418206981769670132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_8
+      name: chactor_DEAD (1)_8
       rect:
         serializedVersion: 2
         x: 512
@@ -320,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 241e11a01b3a07600800000000000000
-      internalID: 464050742392643906
+      spriteID: 5883f5662607db310800000000000000
+      internalID: 1422416625245567109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_9
+      name: chactor_DEAD (1)_9
       rect:
         serializedVersion: 2
         x: 576
@@ -341,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e33dc64867137e5a0800000000000000
-      internalID: -6492165952733654210
+      spriteID: 4c72d2790ccd4f2c0800000000000000
+      internalID: -4398648216305981500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_10
+      name: chactor_DEAD (1)_10
       rect:
         serializedVersion: 2
         x: 640
@@ -362,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3b90b05f33376060800000000000000
-      internalID: 6946577297271987007
+      spriteID: 89ee3556034cc0570800000000000000
+      internalID: 8434331914295570072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_11
+      name: chactor_DEAD (1)_11
       rect:
         serializedVersion: 2
         x: 704
@@ -383,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 279d7ab5deb61b7f0800000000000000
-      internalID: -598578608274417294
+      spriteID: 546ef9a4c1b502d10800000000000000
+      internalID: 2098777603423856197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chactor_DEAD_12
+      name: chactor_DEAD (1)_12
       rect:
         serializedVersion: 2
         x: 768
@@ -404,8 +404,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff7bcb0277f1855d0800000000000000
-      internalID: -3073672149169555457
+      spriteID: 1a47c4b0348b7ce30800000000000000
+      internalID: 4523786948808832161
       vertices: []
       indices: 
       edges: []
