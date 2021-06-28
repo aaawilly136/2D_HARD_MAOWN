@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8633fc0fdf61f4428caf1f1ebd61b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 140
+  Speed: 300
   JumpHeight: 400
   HP: 100
   isGround: 0
@@ -3784,7 +3784,7 @@ GameObject:
   - component: {fileID: 2124191640}
   - component: {fileID: 2124191642}
   - component: {fileID: 2124191641}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: "\u5730\u523A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
