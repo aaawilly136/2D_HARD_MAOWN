@@ -28,7 +28,10 @@ public class Player : MonoBehaviour
     //靜態 static
     //1.靜態欄位不會在重新仔路後還原為預設值
     //2.靜態欄位不會顯示在屬性面板上
+    //3.生命值數量
     public static int life = 2;
+    //判定地板尖刺
+    public float hitBoxCDtime;
 
     private AudioSource aud;
     private Rigidbody2D rig;
@@ -48,6 +51,10 @@ public class Player : MonoBehaviour
     /// 攻擊力
     /// </summary>
     private float attack = 10;
+    /// <summary>
+    /// 判定尖刺傷害範圍
+    /// </summary>
+    private PolygonCollider2D polygonCollider2D;
 
 
 
@@ -67,6 +74,7 @@ public class Player : MonoBehaviour
         hpmax = HP; //抓到初始玩家血量
         Physics2D.IgnoreLayerCollision(9, 10, true);
         groupFinal = GameObject.Find("結束畫面").GetComponent<CanvasGroup>();
+        polygonCollider2D = GetComponent<PolygonCollider2D>();
     }
     public void FixedUpdate()
     {
@@ -195,6 +203,14 @@ public class Player : MonoBehaviour
         HP -= damage;
         imgHp.fillAmount = HP / hpmax;
         if (HP <= 0) Dead();
+        polygonCollider2D.enabled = false;
+        StartCoroutine(ShowPlayerHitBox());
+
+    }
+    IEnumerator ShowPlayerHitBox()
+    {
+        yield return new WaitForSeconds(hitBoxCDtime);
+        polygonCollider2D.enabled = true;
     }
     private bool Dead()
     {

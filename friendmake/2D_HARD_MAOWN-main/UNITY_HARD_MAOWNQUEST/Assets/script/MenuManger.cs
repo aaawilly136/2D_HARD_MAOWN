@@ -16,6 +16,7 @@ public class MenuManger : MonoBehaviour
     {
         SceneManager.LoadScene("遊戲畫面");
     }
+
     /// <summary>
     /// 離開遊戲
     /// </summary>

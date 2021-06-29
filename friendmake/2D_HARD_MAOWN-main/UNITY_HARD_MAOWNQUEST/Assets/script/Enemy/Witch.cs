@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public class Purple : MonoBehaviour
+public class Witch : MonoBehaviour
 {
-    #region 欄位
     [Header("移動速度"), Range(0, 100)]
     public float speed = 1f;
     [Header("攻擊力"), Range(0, 100)]
@@ -18,32 +17,30 @@ public class Purple : MonoBehaviour
     [Header("偵測地板位移與半徑")]
     public Vector3 groundoffset;
     public float groundRadius = 0.1f;
-    [Header("攻擊區域與位移尺寸")]
-    public Vector3 attackoffest;
-    public Vector3 attacksize;
     [Header("打擊音效"), Tooltip("開槍的音效")]
     public AudioClip bulletSound;
-
+    [Header("子彈生成位置")]
+    public Vector3 posBullet;
+    [Header("子彈"), Tooltip("角色要發射的子彈物件")]
+    public GameObject bullet;
+    [Header("子彈速度"), Range(0, 5000)]
+    public int bulletspeed = 800;
 
     private Transform player;
     private Rigidbody2D rig;
     private Animator ani;
     private AudioSource aud;
+    private ParticleSystem ps;
     
-
     /// <summary>
     /// Cd時間
     /// </summary>
     private float timer;
-
     /// <summary>
     /// 原始速度
     /// </summary>
     private float speedOriginal;
 
-    #endregion
-
-    #region 事件
     private void Start()
     {
         ani = GetComponent<Animator>();
@@ -54,7 +51,6 @@ public class Purple : MonoBehaviour
         timer = cd;
         speedOriginal = speed;
     }
-
     private void OnDrawGizmos()
     {
         #region 繪製距離與檢查地板
@@ -67,24 +63,17 @@ public class Purple : MonoBehaviour
         Gizmos.color = new Color(0.6f, 0.9f, 1, 0.7f);
         Gizmos.DrawSphere(transform.position + transform.right * groundoffset.x + transform.up * groundoffset.y, groundRadius);
         #endregion
-        #region 繪製攻擊區域
-        Gizmos.color = new Color(0.3f, 0.3f, 1, 0.8f);
-        Gizmos.DrawCube(transform.position + transform.right * attackoffest.x + transform.up * attackoffest.y, attacksize);
+        #region 繪製子彈生成區域
+        Gizmos.color = new Color(0, 0, 1, 0.5f);
+        Gizmos.DrawSphere(transform.position + transform.right * posBullet.x + transform.up * posBullet.y, 0.1f);
 
         #endregion
     }
-
     private void Update()
     {
         Move();
 
     }
-    #endregion
-
-    #region 方法
-    /// <summary>
-    /// 移動
-    /// </summary>
     private void Move()
     {
         //如果死亡就跳出
@@ -106,17 +95,13 @@ public class Purple : MonoBehaviour
 
         else
         {
-                ani.SetBool("走路開關", false);
+            ani.SetBool("走路開關", false);
         }
     }
-
-    /// <summary>
-    /// 攻擊
-    /// </summary>
     private void Attack()
     {
         ani.SetBool("走路開關", false);
-        
+
         if (timer <= cd)
         {
             timer += Time.deltaTime;
@@ -125,16 +110,20 @@ public class Purple : MonoBehaviour
         {
             timer = 0;
             ani.SetTrigger("攻擊觸發");
+            ps.Play();
             aud.PlayOneShot(bulletSound, 0.5f);
-            Collider2D hit =Physics2D.OverlapBox(transform.position + transform.right * attackoffest.x + transform.up * attackoffest.y, attacksize, 0);
+            GameObject temp = Instantiate(bullet, transform.position + transform.right * posBullet.x + transform.up * posBullet.y, Quaternion.identity); //簡寫
+            // 暫存物件.取得元件<2D鋼體>().添加推力(角色的前方 * 子彈速度)
+            temp.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletspeed);
+            //暫存物件.添加元件<子彈>();
+            temp.AddComponent<EnemyBullet>();
+            // 刪除(物件 , 延遲秒數) 
+            Destroy(temp, 1f);
+            ParticleSystemRenderer render = temp.GetComponent<ParticleSystemRenderer>();
+            render.flip = new Vector3(transform.eulerAngles.y == 0 ? 0 : 1, 0, 0);
 
-            if (hit && hit.name == "Player") hit.GetComponent<Player>().Hit(attack);
         }
     }
-
-    /// <summary>
-    /// 面相玩家
-    /// </summary>
     private void LookAtPlayer()
     {
         if (transform.position.x > player.position.x)
@@ -146,13 +135,9 @@ public class Purple : MonoBehaviour
         {
             transform.eulerAngles = Vector3.zero;
         }
-    
-        
+
+
     }
-    
-    /// <summary>
-    /// 移動區域
-    /// </summary>
     private void CheckGround()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position + transform.right * groundoffset.x + transform.up * groundoffset.y, groundRadius, 1 << 8);
@@ -170,11 +155,7 @@ public class Purple : MonoBehaviour
         }
 
     }
-
-    /// <summary>
-    /// 死亡
-    /// </summary>
-    private void Dead() 
+    private void Dead()
     {
         ani.SetBool("死亡", true);
         //死亡後關閉碰撞
@@ -185,17 +166,10 @@ public class Purple : MonoBehaviour
         //死亡後兩秒刪除物件
         Destroy(gameObject, 2);
     }
-
-    /// <summary>
-    /// 受傷
-    /// </summary>
-    /// <param name="damge">接收到的傷害</param>
     public void Hit(float damge)
     {
         hp -= damge;
 
         if (hp <= 0) Dead();
     }
-    #endregion
 }
-
