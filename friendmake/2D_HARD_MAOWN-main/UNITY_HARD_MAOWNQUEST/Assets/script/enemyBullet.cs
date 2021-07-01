@@ -11,7 +11,7 @@ public class enemyBullet : MonoBehaviour
         {
             if (col.CompareTag("Player"))
             {
-                col.GetComponent<Player>().Hit(1);
+                col.GetComponent<Player>().Hit(5);
             }
             Destroy(gameObject);
         }
