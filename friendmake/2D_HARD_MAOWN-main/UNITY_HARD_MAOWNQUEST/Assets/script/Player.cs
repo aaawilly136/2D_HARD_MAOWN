@@ -103,6 +103,11 @@ public class Player : MonoBehaviour
         Gizmos.color = new Color(0, 0, 1, 0.5f);
         Gizmos.DrawSphere(transform.position + transform.right * posBullet.x + transform.up * posBullet.y, 0.1f);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "死亡區域") HP = 0;
+            
+    }
 
     #endregion
 
