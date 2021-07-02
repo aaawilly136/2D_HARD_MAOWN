@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-using UnityEditor.Animations;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -23,29 +25,72 @@ public class Player : MonoBehaviour
     public float groundRadius = 0.2f;
     [Header("子彈生成位置")]
     public Vector3 posBullet;
+    //靜態 static
+    //1.靜態欄位不會在重新仔路後還原為預設值
+    //2.靜態欄位不會顯示在屬性面板上
+    //3.生命值數量
+    public static int life = 2;
+    //判定地板尖刺
+    public float hitBoxCDtime;
 
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
     private ParticleSystem ps;
+    /// <summary>
+    /// 血量
+    /// </summary>
+    private Image imgHp;
+    //生命值
+    private Text textHp;
+    /// <summary>
+    /// 血量最大值
+    /// </summary>
+    private float hpmax;
+    /// <summary>
+    /// 攻擊力
+    /// </summary>
+    private float attack = 10;
+    /// <summary>
+    /// 判定尖刺傷害範圍
+    /// </summary>
+    private PolygonCollider2D polygonCollider2D;
+
+
 
     #endregion
 
     #region 事件
+    private CanvasGroup groupFinal;
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
         ps = transform.Find("集氣").GetComponent<ParticleSystem>();
+        imgHp = GameObject.Find("血條").GetComponent<Image>();
+        textHp = GameObject.Find("生命").GetComponent<Text>();
+        textHp.text = life.ToString();
+        hpmax = HP; //抓到初始玩家血量
+        Physics2D.IgnoreLayerCollision(9, 10, true);
+        groupFinal = GameObject.Find("結束畫面").GetComponent<CanvasGroup>();
+        polygonCollider2D = GetComponent<PolygonCollider2D>();
+    }
+    public void FixedUpdate()
+    {
+        MoveFixed();
+    }
+    
+    public void MoveFixed()
+    {
+        rig.velocity = new Vector2(h * Speed * Time.deltaTime, rig.velocity.y);
     }
     public void Update()
     {
+        if (Dead()) return;
         Move();
         Jump();
         Fire();
-        Physics2D.IgnoreLayerCollision(9, 10, true);
-
     }
     private void OnDrawGizmos()
     {
@@ -58,10 +103,20 @@ public class Player : MonoBehaviour
         Gizmos.color = new Color(0, 0, 1, 0.5f);
         Gizmos.DrawSphere(transform.position + transform.right * posBullet.x + transform.up * posBullet.y, 0.1f);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "死亡區域") HP = 0;
+            
+    }
+
+    #endregion
+
+    #region 方法
+    private float h;
     public void Move()
     {
-        float h = Input.GetAxis("Horizontal");
-        rig.velocity = new Vector2(h * Speed * Time.deltaTime, rig.velocity.y);
+        h = Input.GetAxis("Horizontal");
+        
         if ((Input.GetKeyDown(KeyCode.D)) || (Input.GetKeyDown(KeyCode.RightArrow)))
         {
             transform.eulerAngles = Vector3.zero;
@@ -118,6 +173,8 @@ public class Player : MonoBehaviour
             GameObject temp = Instantiate(bullet, transform.position + transform.right * posBullet.x + transform.up * posBullet.y, Quaternion.identity); //簡寫
             // 暫存物件.取得元件<2D鋼體>().添加推力(角色的前方 * 子彈速度)
             temp.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletspeed);
+            //暫存物件.添加元件<子彈>();
+            temp.AddComponent<Bullet>();
             // 刪除(物件 , 延遲秒數) 
             Destroy(temp, 1f);
 
@@ -130,18 +187,62 @@ public class Player : MonoBehaviour
             render.flip = new Vector3(transform.eulerAngles.y == 0 ? 0 : 1, 0, 0);
             // 計時器 = 數學.夾住(計時器,最小,最大); 
             timer = Mathf.Clamp(timer, 0, 5);
+            //攻擊力 累加 四捨五入(計時器) * 2
+            temp.GetComponent<Bullet>().attack = attack + (Mathf.Round(timer) + 5) * 4;
             //集氣:調整子彈尺寸
             // temp.transform.lossyScale = Vector3.one; //為唯獨 read only - 不能指定值 - 此行為錯誤示範會出現紅色錯誤標示
             temp.transform.localScale = Vector3.one + Vector3.one * timer;
 
             //計時器歸零
             timer = 0;
+
+            // 子彈攻擊力
         }
         #endregion
 
-        #region 方法
-        #endregion
 
+    }
+    public void Hit(float damage)
+    {
+        ani.SetTrigger("受傷觸發");
+        HP -= damage;
+        imgHp.fillAmount = HP / hpmax;
+        if (HP <= 0) Dead();
+        polygonCollider2D.enabled = false;
+        StartCoroutine(ShowPlayerHitBox());
 
+    }
+    IEnumerator ShowPlayerHitBox()
+    {
+        yield return new WaitForSeconds(hitBoxCDtime);
+        polygonCollider2D.enabled = true;
+    }
+    private bool Dead()
+    {
+        // 如果尚未死亡 並且血量低於等於零 才可以執行死亡
+        if (!ani.GetBool("死亡開關") && HP <= 0)
+        {
+            ani.SetBool("死亡開關", HP <= 0);
+            life--;
+            textHp.text = life.ToString();
+            if (life > 0) Invoke("Replay", 2f); // 如果生命值大於0就重新遊戲
+
+            else StartCoroutine(GameOver());  //啟動協同程序
+        }
+        return HP <= 0;
+    }
+    private IEnumerator GameOver()
+    {
+        while(groupFinal.alpha <1)
+        {
+            groupFinal.alpha += 0.05f;
+            yield return new WaitForSeconds(0.02f);
+        }
+        groupFinal.interactable = true;
+        groupFinal.blocksRaycasts = true;
+    }
+    private void Replay()
+    {
+        SceneManager.LoadScene("遊戲畫面");
     }
 }
