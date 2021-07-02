@@ -319,7 +319,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -403,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98430481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.998, y: -1.314, z: 0}
+  m_LocalPosition: {x: -2.91, y: -0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1422315502}
@@ -430,7 +430,7 @@ MonoBehaviour:
   bulletspeed: 800
   bulletSound: {fileID: 8300000, guid: 2344d87eaa050ee40af629e13f0d0526, type: 3}
   groundoffest: {x: -0.01, y: -0.32, z: 0}
-  groundRadius: 0.56
+  groundRadius: 0.34
   posBullet: {x: 0.73, y: 0, z: 0}
   hitBoxCDtime: 2
 --- !u!82 &98430488
@@ -812,6 +812,11 @@ PrefabInstance:
       propertyPath: attack
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7074212980965292957, guid: afce8fff0c26b384bba87a05acb1fcab,
+        type: 3}
+      propertyPath: flashTime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afce8fff0c26b384bba87a05acb1fcab, type: 3}
 --- !u!1001 &335788873
@@ -890,6 +895,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: turret (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560677159928, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335561609210900, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473e19df01eb9014fbe13a43116b0e61, type: 3}
@@ -1895,6 +1910,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 719615863}
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: b04fe632a2939864fbf8dee79388e558,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &603844189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2027,6 +2054,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attack
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212980965292957, guid: afce8fff0c26b384bba87a05acb1fcab,
+        type: 3}
+      propertyPath: flashTime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afce8fff0c26b384bba87a05acb1fcab, type: 3}
@@ -2743,6 +2775,133 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &719615862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719615864}
+  - component: {fileID: 719615863}
+  m_Layer: 0
+  m_Name: "\u6309\u9215\u97F3\u6548"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &719615863
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719615862}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &719615864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719615862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &726376060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,7 +3043,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
-  m_Size: {x: 1.68, y: 2.23}
+  m_Size: {x: 1.68, y: 1.94}
   m_Direction: 0
 --- !u!114 &726376066
 MonoBehaviour:
@@ -2899,14 +3058,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 137
-  attack: 10
+  attack: 40
   hp: 500
   radiusTrack: 12.3
   radiusAttack: 2
   cd: 1.5
-  groundoffest: {x: 1.1, y: -1.28, z: 0}
+  groundoffest: {x: 1.1, y: -1.29, z: 0}
   groundRadius: 0.21
   bulletSound: {fileID: 8300000, guid: 2344d87eaa050ee40af629e13f0d0526, type: 3}
+  flashTime: 0.2
   attackoffest: {x: 1.69, y: -0.02, z: 0}
   attackSize: {x: 1.41, y: 1.95, z: 0}
   secondHP: 300
@@ -3176,6 +3336,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 719615863}
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: b04fe632a2939864fbf8dee79388e558,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10370,6 +10542,11 @@ PrefabInstance:
       propertyPath: attack
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7074212980965292957, guid: afce8fff0c26b384bba87a05acb1fcab,
+        type: 3}
+      propertyPath: flashTime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afce8fff0c26b384bba87a05acb1fcab, type: 3}
 --- !u!1 &1125995503
@@ -10535,6 +10712,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8923335560144019089, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560622976093, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8923335560677159908, guid: 473e19df01eb9014fbe13a43116b0e61,
         type: 3}
       propertyPath: target
@@ -10553,12 +10740,12 @@ PrefabInstance:
     - target: {fileID: 8923335560677159911, guid: 473e19df01eb9014fbe13a43116b0e61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.8844037
+      value: 3.74
       objectReference: {fileID: 0}
     - target: {fileID: 8923335560677159911, guid: 473e19df01eb9014fbe13a43116b0e61,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5872307
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 8923335560677159911, guid: 473e19df01eb9014fbe13a43116b0e61,
         type: 3}
@@ -10604,6 +10791,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: turret (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560677159928, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560677159928, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: "\u5730\u677F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560759197456, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560803584623, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335561549550102, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335561609210900, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335561609210900, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473e19df01eb9014fbe13a43116b0e61, type: 3}
@@ -10683,6 +10905,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: turret (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560677159928, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: "\u5730\u677F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335561609210900, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473e19df01eb9014fbe13a43116b0e61, type: 3}
@@ -15809,6 +16041,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: turret (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8923335560677159928, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335561609210900, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473e19df01eb9014fbe13a43116b0e61, type: 3}
 --- !u!1 &2053774324
@@ -16727,6 +16969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attack
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212980965292957, guid: afce8fff0c26b384bba87a05acb1fcab,
+        type: 3}
+      propertyPath: flashTime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afce8fff0c26b384bba87a05acb1fcab, type: 3}

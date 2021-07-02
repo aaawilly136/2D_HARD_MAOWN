@@ -15,6 +15,7 @@ public class Boss : Enemy
     {
         base.Hit(damage);  // 指父類別原本的程式區塊
         //print("我是子類別 BOSS");
+        
         if (hp <= secondHP)
         {
             radiusAttack = 7;

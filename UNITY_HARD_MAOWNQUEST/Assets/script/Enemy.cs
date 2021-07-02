@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     [Header("開槍音效"), Tooltip("開槍的音效")]
     public AudioClip bulletSound;
 
+    public float flashTime;
+
 
     protected Transform player;
     private Rigidbody2D rig;
@@ -27,6 +29,9 @@ public class Enemy : MonoBehaviour
     private AudioSource aud;
     protected float timer;
     private float speedOringinal;
+    private SpriteRenderer sr;
+    private Color originalColor;
+
     #region 事件
     protected virtual void Start()
     {
@@ -39,6 +44,8 @@ public class Enemy : MonoBehaviour
         //讓敵人一碰到玩家就開始攻擊
         timer = cd;
         speedOringinal = speed;
+        sr = GetComponent<SpriteRenderer>();
+        originalColor = sr.color;
     }
     [Header("攻擊區域位移與尺寸")]
     public Vector3 attackoffest;
@@ -46,6 +53,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Move();
+        
     }
     private void OnDrawGizmos()
     {
@@ -145,7 +153,7 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
+    
     protected virtual void Dead()
     {
         ani.SetBool("死亡", true);
@@ -159,8 +167,18 @@ public class Enemy : MonoBehaviour
     public virtual void Hit(float damage)
     {
         hp -= damage;
+        FlashColor(flashTime);
         //判斷式 只有一個分號 可以省略大括號
         if (hp <= 0) Dead();
+    }
+    void FlashColor(float time)
+    {
+        sr.color = Color.red;
+        Invoke("ResetColor", time);
+    }
+    void ResetColor()
+    {
+        sr.color = originalColor;
     }
     #endregion
 }
