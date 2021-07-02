@@ -35,7 +35,8 @@ public class Player : MonoBehaviour
 
     private AudioSource aud;
     private Rigidbody2D rig;
-    private Animator ani;
+    protected Animator ani;
+    protected Transform player;
     private ParticleSystem ps;
     /// <summary>
     /// 血量
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
     /// 判定尖刺傷害範圍
     /// </summary>
     private PolygonCollider2D polygonCollider2D;
-
+    private Text textFinaleTitle;
 
 
     #endregion
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
         hpmax = HP; //抓到初始玩家血量
         Physics2D.IgnoreLayerCollision(9, 10, true);
         groupFinal = GameObject.Find("結束畫面").GetComponent<CanvasGroup>();
+        textFinaleTitle = GameObject.Find("結束標題").GetComponent<Text>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
     }
     public void FixedUpdate()
@@ -102,6 +104,10 @@ public class Player : MonoBehaviour
         // 先指定顏色在畫圖型
         Gizmos.color = new Color(0, 0, 1, 0.5f);
         Gizmos.DrawSphere(transform.position + transform.right * posBullet.x + transform.up * posBullet.y, 0.1f);
+    }
+    private void OnParticleCollision(GameObject other)
+    {
+        Hit(other.GetComponent<ParticleSystemData>().attack);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -231,9 +237,10 @@ public class Player : MonoBehaviour
         }
         return HP <= 0;
     }
-    private IEnumerator GameOver()
+    public IEnumerator GameOver(string finalTitle = "GameOver")
     {
-        while(groupFinal.alpha <1)
+        textFinaleTitle.text = finalTitle;
+        while (groupFinal.alpha <1)
         {
             groupFinal.alpha += 0.05f;
             yield return new WaitForSeconds(0.02f);

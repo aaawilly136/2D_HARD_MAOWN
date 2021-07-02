@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1347823270073531957}
   - component: {fileID: 1347823270073531954}
   - component: {fileID: 1347823270073531955}
-  - component: {fileID: 1347823270073531952}
   - component: {fileID: 1347823270073531953}
   - component: {fileID: 1053860620778736106}
+  - component: {fileID: 7074212980965292957}
   m_Layer: 0
   m_Name: "\u7D2B\u8272\u602A\u7269"
   m_TagString: "\u6575\u4EBA"
@@ -124,28 +124,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.3, y: 1.7}
   m_Direction: 0
---- !u!114 &1347823270073531952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347823270073531950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1098eea108ae7894b8b5240ef008b6bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 50
-  attack: 10
-  cd: 3
-  hp: 100
-  radiusTrack: 5
-  radiusAttack: 2
-  groundoffset: {x: 1.65, y: -0.93, z: 0}
-  groundRadius: 0.2
-  attackoffest: {x: 1.49, y: 0.09, z: 0}
-  attacksize: {x: 1.38, y: 1.44, z: 0}
 --- !u!95 &1347823270073531953
 Animator:
   serializedVersion: 3
@@ -261,3 +239,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7074212980965292957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347823270073531950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d818367a3f5c4ad44b2640fc9fa5ebc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  attack: 10
+  hp: 90
+  radiusTrack: 5
+  radiusAttack: 1.9
+  cd: 1
+  groundoffest: {x: 0.92, y: -0.85, z: 0}
+  groundRadius: 0.1
+  bulletSound: {fileID: 8300000, guid: a027b932a8db85544b3da733508f67a1, type: 3}
+  attackoffest: {x: 1.13, y: 0.09, z: 0}
+  attackSize: {x: 0.89, y: 1.44, z: 0}

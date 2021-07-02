@@ -13,7 +13,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Purple>().Hit(attack);
+            collision.gameObject.GetComponent<Enemy>().Hit(attack);
 
         }
         // 碰撞到任何物件都要刪除
