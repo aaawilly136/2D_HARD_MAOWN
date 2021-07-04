@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
         Move();
         
     }
+    
     private void OnDrawGizmos()
     {
         #region 繪製距離與檢查地板
@@ -76,6 +77,7 @@ public class Enemy : MonoBehaviour
     }
     #endregion
     #region 方法
+    
     private void Move()
     {
         //如果死亡就跳出

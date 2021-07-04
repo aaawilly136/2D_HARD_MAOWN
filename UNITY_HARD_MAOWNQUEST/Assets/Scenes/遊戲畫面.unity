@@ -403,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98430481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.91, y: -0.99, z: 0}
+  m_LocalPosition: {x: -5.44, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1422315502}
@@ -3057,17 +3057,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab4a24d373ae7c4ba98a7a1007349ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 137
+  speed: 140
   attack: 40
   hp: 500
   radiusTrack: 12.3
   radiusAttack: 2
   cd: 1.5
-  groundoffest: {x: 1.1, y: -1.29, z: 0}
+  groundoffest: {x: 1.05, y: -1.1, z: 0}
   groundRadius: 0.21
   bulletSound: {fileID: 8300000, guid: 2344d87eaa050ee40af629e13f0d0526, type: 3}
   flashTime: 0.2
-  attackoffest: {x: 1.69, y: -0.02, z: 0}
+  attackoffest: {x: 1.64, y: -0.02, z: 0}
   attackSize: {x: 1.41, y: 1.95, z: 0}
   secondHP: 300
   psAttackSecond: {fileID: 1732070835}
@@ -17053,6 +17053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923335560759197471, guid: 473e19df01eb9014fbe13a43116b0e61,
+        type: 3}
+      propertyPath: isLeft
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473e19df01eb9014fbe13a43116b0e61, type: 3}
