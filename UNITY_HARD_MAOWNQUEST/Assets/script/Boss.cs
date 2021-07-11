@@ -35,9 +35,11 @@ public class Boss : Enemy
             case StateBoss.second:
                 timer = 0;
                 ani.SetTrigger("攻擊觸發");
-                
+                aud.PlayOneShot(bulletSound);
                 psAttackSecond.transform.position = transform.position + transform.right * 7f + transform.up * -0.5f;
                 psAttackSecond.transform.eulerAngles = transform.eulerAngles;
+                ParticleSystemRenderer render = psAttackSecond.GetComponent<ParticleSystemRenderer>();
+                render.flip = new Vector3(transform.eulerAngles.y == 0 ? 0 : 1, 0, 0);
 
                 psAttackSecond.Play();
                 break;

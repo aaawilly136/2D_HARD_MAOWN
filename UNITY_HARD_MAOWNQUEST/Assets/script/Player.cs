@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (win) return;
         if (collision.name == "死亡區域") HP = 0;
             
     }
@@ -210,6 +211,7 @@ public class Player : MonoBehaviour
     }
     public void Hit(float damage)
     {
+        if (win) return;
         ani.SetTrigger("受傷觸發");
         HP -= damage;
         imgHp.fillAmount = HP / hpmax;
@@ -218,6 +220,10 @@ public class Player : MonoBehaviour
         StartCoroutine(ShowPlayerHitBox());
 
     }
+    /// <summary>
+    /// 地刺傷害判定
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ShowPlayerHitBox()
     {
         yield return new WaitForSeconds(hitBoxCDtime);
@@ -237,9 +243,15 @@ public class Player : MonoBehaviour
         }
         return HP <= 0;
     }
+    private bool win;
     public IEnumerator GameOver(string finalTitle = "GameOver")
     {
-        textFinaleTitle.text = finalTitle;
+        if(!win)
+        {
+            if (finalTitle == "YOU WIN") win = true;
+            textFinaleTitle.text = finalTitle;
+        }
+        
         while (groupFinal.alpha <1)
         {
             groupFinal.alpha += 0.05f;

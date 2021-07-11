@@ -4,17 +4,20 @@ using UnityEngine.SceneManagement; //scencemanger使用場景管理器
 public class MenuManger : MonoBehaviour
 {
 
-    private void DelayStartGame()
+    public void DelayStartGame()
     {
-        //延遲呼叫("方法名稱" ,延遲時間)
-        Invoke("DelayStartGame", 1.1f);
+        
+        SceneManager.LoadScene("遊戲畫面");
+        Player.life = 2;
+        
     }
     /// <summary>
     /// 開始遊戲
     /// </summary>
     public void Gamestart()
     {
-        SceneManager.LoadScene("遊戲畫面");
+        //延遲呼叫("方法名稱" ,延遲時間)
+        Invoke("DelayStartGame", 1.1f);
     }
 
     /// <summary>
@@ -25,7 +28,7 @@ public class MenuManger : MonoBehaviour
         Invoke("DelayQuitGame", 1.3f);
 
     }
-    private void DelayQuitGame()
+    public void DelayQuitGame()
     {
         Application.Quit();
     }

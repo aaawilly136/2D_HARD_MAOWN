@@ -26,9 +26,10 @@ public class Enemy : MonoBehaviour
     protected Transform player;
     private Rigidbody2D rig;
     protected Animator ani;
-    private AudioSource aud;
+    protected AudioSource aud;
     protected float timer;
     private float speedOringinal;
+    //讓怪物被玩家打到後會變紅
     private SpriteRenderer sr;
     private Color originalColor;
 
@@ -94,7 +95,7 @@ public class Enemy : MonoBehaviour
         }
         else if (dis <= radiusTrack)
         {
-            rig.velocity = transform.right * speed * Time.deltaTime;
+            rig.velocity = transform.right * speed * Time.fixedDeltaTime;
             ani.SetBool("走路開關", speed != 0);   //速度不等於零時 走路 否則 等待
             LookAtPlayer();
             CheckGround();
