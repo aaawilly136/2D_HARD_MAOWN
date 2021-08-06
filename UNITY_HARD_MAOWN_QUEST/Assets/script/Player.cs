@@ -58,11 +58,22 @@ public class Player : MonoBehaviour
     private PolygonCollider2D polygonCollider2D;
     private Text textFinaleTitle;
 
+    private Inventory inventory;
+    [SerializeField] private UI_Inventory uiInventory;
+
 
     #endregion
 
     #region 事件
     private CanvasGroup groupFinal;
+    //private void Awake()
+    //{
+        //inventory = new Inventory();
+        //uiInventory.SetInventory(inventory);
+        //ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item { itemType = Item.ItemType.fire, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(-20, 20), new Item { itemType = Item.ItemType.health, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(20, -20), new Item { itemType = Item.ItemType.poison, amount = 1 });
+    //}
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -77,6 +88,9 @@ public class Player : MonoBehaviour
         groupFinal = GameObject.Find("結束畫面").GetComponent<CanvasGroup>();
         textFinaleTitle = GameObject.Find("結束標題").GetComponent<Text>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+        ItemWorld.SpawnItemWorld(new Vector3(-1.9f, -1.48f), new Item { itemType = Item.ItemType.fire, amount = 1 });
     }
     public void FixedUpdate()
     {

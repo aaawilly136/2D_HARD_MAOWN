@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement; //scencemanger使用場景管理器
 
+/// <summary>
+/// 控制場景的腳本
+/// </summary>
 public class MenuManger : MonoBehaviour
 {
 
