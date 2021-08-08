@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Item 
 {
     public enum ItemType 
@@ -23,4 +25,19 @@ public class Item
             case ItemType.poison:   return ItemAssets.instance.poisonSpirite;
         }
     }
+    public bool IsStackabke()
+    {
+        switch(itemType)
+        {
+            default:
+            case ItemType.health:
+            case ItemType.poison:
+            case ItemType.fire:
+                return true;
+            
+                //return false;
+            
+        }
+    }
+    
 }

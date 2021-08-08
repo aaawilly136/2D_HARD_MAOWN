@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+
 public class Player : MonoBehaviour
 {
     #region 欄位
@@ -88,10 +89,14 @@ public class Player : MonoBehaviour
         groupFinal = GameObject.Find("結束畫面").GetComponent<CanvasGroup>();
         textFinaleTitle = GameObject.Find("結束標題").GetComponent<Text>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
-        inventory = new Inventory();
+        
+        inventory = new Inventory(UseItem);
+        
+        uiInventory.SetPlayer(this);
         uiInventory.SetInventory(inventory);
-        ItemWorld.SpawnItemWorld(new Vector3(-1.9f, -1.48f), new Item { itemType = Item.ItemType.fire, amount = 1 });
+        
     }
+    
     public void FixedUpdate()
     {
         MoveFixed();
@@ -107,6 +112,9 @@ public class Player : MonoBehaviour
         Move();
         Jump();
         Fire();
+        
+
+
     }
     private void OnDrawGizmos()
     {
@@ -127,6 +135,14 @@ public class Player : MonoBehaviour
     {
         if (win) return;
         if (collision.name == "死亡區域") HP = 0;
+        //吃道具
+        ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
+        if (itemWorld != null)
+        {
+            //觸碰道具
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
             
     }
 
@@ -222,6 +238,31 @@ public class Player : MonoBehaviour
         #endregion
 
 
+    }
+    public void UseItem(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.health: // 補血道具使用
+                HP += 20;
+                HP = Mathf.Clamp(HP, 0, hpmax);
+                imgHp.fillAmount = HP / hpmax;
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.health, amount = 1 });
+                break;
+            case Item.ItemType.fire:
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    
+                }
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.fire, amount = 1 });
+                break;
+            case Item.ItemType.poison:
+                HP -= 20;
+                HP = Mathf.Clamp(HP, 0, hpmax);
+                imgHp.fillAmount = HP / hpmax;
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.poison, amount = 1 });
+                break;
+        }
     }
     public void Hit(float damage)
     {
