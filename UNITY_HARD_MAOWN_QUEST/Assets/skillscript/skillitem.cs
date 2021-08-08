@@ -8,6 +8,10 @@ public class skillitem : MonoBehaviour
     private float timer = 0; //計時器初始直
     private Image filledImage;
     private bool isStartTimer;
+
+    private Inventory inventory;
+    [SerializeField] private UI_Inventory uiInventory;
+
     public KeyCode keyCode;
 
     private void Start()

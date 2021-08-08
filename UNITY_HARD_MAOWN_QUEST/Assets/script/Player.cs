@@ -113,6 +113,13 @@ public class Player : MonoBehaviour
         Jump();
         Fire();
         
+        if(useFire && Input.GetKeyDown(KeyCode.E))
+        {
+            inventory.RemoveItem(new Item { itemType = Item.ItemType.fire, amount = 1 });
+            
+            useFire = false;
+        }
+
 
 
     }
@@ -239,6 +246,7 @@ public class Player : MonoBehaviour
 
 
     }
+    bool useFire;
     public void UseItem(Item item)
     {
         switch (item.itemType)
@@ -250,10 +258,7 @@ public class Player : MonoBehaviour
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.health, amount = 1 });
                 break;
             case Item.ItemType.fire:
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    
-                }
+                useFire = true;
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.fire, amount = 1 });
                 break;
             case Item.ItemType.poison:
